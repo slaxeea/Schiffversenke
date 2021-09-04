@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="index.js"></script>
+    <title>Schiffversenke</title>
+</head>
+
+<body>
+    <h2 class="title">Welcome to Schiffversenke</h2>
+    <h3 class="desc" id="desc"></h3>
+
+    <div class="table-container">
+        <table class="table" id="table1">
+        </table>
+    </div>
+
+    <div class="table-container">
+        <table class="table" id="table2">
+        </table>
+    </div>
+</body>
+
+<script>
+    $("#table2").on("click", ".td", function () {
+        $(this).css("color", "black");
+        if ($(this).text() == "o") {
+            console.log("You have found a ship");
+            playerfound = localStorage.getItem("playerfound");
+            playerfound++;
+            localStorage.setItem("playerfound", playerfound);
+        }
+        checkWin();
+        aiGuess();
+    })
+    $("#table1").on("click", ".td", function () {
+        numberofships = localStorage.getItem("numberofships");
+        numberofships++;
+        if (numberofships <= 14) {
+            $(this).text("o");
+            $(this).css("color", "black");
+            numberofships = localStorage.setItem("numberofships", numberofships);
+        } else {
+            $("#desc").text("You have set all your ships")
+        }
+
+    })
+    function aiGuess() {
+        xcoord = Math.round(Math.random() * 7) + 1;
+        ycoord = Math.round(Math.random() * 7) + 1;
+        elem = $(`#tbl1-tr${ycoord}-td${xcoord}`);
+        elem.css("color", "red");
+        if (elem.text() == "o") {
+            console.log("Ai has found a ship");
+            aifound = localStorage.getItem("aifound");
+            aifound++;
+            localStorage.setItem("aifound", aifound);
+        }
+        checkWin();
+    }
+
+    function checkWin() {
+        aifound = localStorage.getItem("aifound");
+        playerfound = localStorage.getItem("playerfound");
+
+        if (aifound >= 14) {
+            console.log("ai won");
+        } if (playerfound >= 14) {
+            console.log("you win!");
+        }
+    }
+</script>
+
+</html>
