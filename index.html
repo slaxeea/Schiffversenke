@@ -16,10 +16,21 @@
     <h2 class="title">Welcome to Schiffversenke</h2>
     <h3 class="desc" id="desc"></h3>
 
+    <div class="points-container">
+        <h3 class="points-text" id="ai-sunk"></h3>
+    </div>
+
+    <div class="points-container">
+        <h3 class="points-text" id="player-sunk"></h3>
+    </div>
+
+    <br>
+
     <div class="table-container">
         <table class="table" id="table1">
         </table>
     </div>
+
 
     <div class="table-container">
         <table class="table" id="table2">
@@ -35,13 +46,16 @@
     $("#table2").on("click", ".td", function () {
         $(this).css("color", "black");
         if ($(this).text() == "o") {
+            $(this).css("color", "blue");
             console.log("You have found a ship");
             playerfound = localStorage.getItem("playerfound");
             playerfound++;
             localStorage.setItem("playerfound", playerfound);
         }
         checkWin();
+        updatePoints();
         aiGuess();
+
     })
     $("#table1").on("click", ".td", function () {
         numberofships = localStorage.getItem("numberofships");
@@ -62,10 +76,12 @@
         elem.css("color", "red");
         if (elem.text() == "o") {
             console.log("Ai has found a ship");
+            elem.css("color", "blue");
             aifound = localStorage.getItem("aifound");
             aifound++;
             localStorage.setItem("aifound", aifound);
         }
+        updatePoints();
         checkWin();
     }
 
@@ -74,11 +90,18 @@
         playerfound = localStorage.getItem("playerfound");
 
         if (aifound >= 14) {
-            console.log("ai won");
+            $("#desc").text("ai won");
         } if (playerfound >= 14) {
-            console.log("you win!");
+            $("#desc").text("you win!");
         }
     }
+
+    function updatePoints() {
+        $("#player-sunk").text("ai-ships sunk: "+localStorage.getItem("playerfound"));
+        $("#ai-sunk").text("your ships sunk: "+localStorage.getItem("aifound"));
+        $("#desc").text("");
+    }
+
 </script>
 
 </html>

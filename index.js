@@ -2,6 +2,7 @@ $(document).ready(function () {
   localStorage.setItem("numberofships", 0);
   localStorage.setItem("aifound", 0);
   localStorage.setItem("playerfound", 0);
+  
   tableInit(1);
   tableInit(2);
   $("#desc").text("Please place your ships on the left grid");
@@ -30,3 +31,4 @@ function tableInit(tablenr) {
     }
   }
 }
+
