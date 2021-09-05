@@ -13,32 +13,34 @@
 </head>
 
 <body>
-    <h2 class="title">Welcome to Schiffversenke</h2>
-    <h3 class="desc" id="desc"></h3>
+    <div class="content">
+        <h2 class="title">Welcome to Battleships</h2>
+        <h3 class="desc" id="desc"></h3>
 
-    <div class="points-container">
-        <h3 class="points-text" id="ai-sunk"></h3>
-    </div>
+        <div class="points-container">
+            <h3 class="points-text" id="ai-sunk"></h3>
+        </div>
 
-    <div class="points-container">
-        <h3 class="points-text" id="player-sunk"></h3>
-    </div>
+        <div class="points-container">
+            <h3 class="points-text" id="player-sunk"></h3>
+        </div>
 
-    <br>
+        <br>
 
-    <div class="table-container">
-        <table class="table" id="table1">
-        </table>
-    </div>
+        <div class="table-container">
+            <table class="table" id="table1">
+            </table>
+        </div>
 
 
-    <div class="table-container">
-        <table class="table" id="table2">
-        </table>
-    </div>
+        <div class="table-container">
+            <table class="table" id="table2">
+            </table>
+        </div>
 
-    <div class="reset-container">
-        <button class="button" id="reset">Reset game</button>
+        <div class="reset-container">
+            <button class="button" id="reset">Reset game</button>
+        </div>
     </div>
 </body>
 
@@ -97,8 +99,8 @@
     }
 
     function updatePoints() {
-        $("#player-sunk").text("ai-ships sunk: "+localStorage.getItem("playerfound"));
-        $("#ai-sunk").text("your ships sunk: "+localStorage.getItem("aifound"));
+        $("#player-sunk").text("ai-ships sunk: " + localStorage.getItem("playerfound"));
+        $("#ai-sunk").text("your ships sunk: " + localStorage.getItem("aifound"));
         $("#desc").text("");
     }
 
